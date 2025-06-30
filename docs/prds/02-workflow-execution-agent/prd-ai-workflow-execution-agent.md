@@ -4,7 +4,7 @@
 
 **Document Version:** 1.0  
 **Date:** June 29, 2025  
-**Author:** [Your Name]  
+**Author:** Alberto-Codes  
 **Project Code:** AWEA-2025  
 **Dependencies:** Screen Recording Workflow Analyzer (SRWA-2025)
 
