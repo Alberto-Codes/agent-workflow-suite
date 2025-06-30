@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>prd-screen-recording-workflow-analyzer.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="product-requirements-document">Product Requirements Document</h1>
+<h2 id="screen-recording-workflow-analyzer">Screen Recording Workflow Analyzer</h2>
+<h3 id="ai-agent-training-data-generator">AI Agent Training Data Generator</h3>
+<p><strong>Document Version:</strong> 1.0<br>
+<strong>Date:</strong> June 29, 2025<br>
+<strong>Author:</strong> Alberto-Codes<br>
+<strong>Project Code:</strong> SRWA-2025</p>
+<hr>
+<h2 id="executive-summary">Executive Summary</h2>
+<h3 id="project-overview">Project Overview</h3>
+<p>Develop a Python application that transforms 2-5 minute browser workflow recordings into structured training data for AI agents. The system analyzes screen recordings to extract both technical workflow steps and business decision logic, generating three specific artifacts designed for consumption by downstream Gemini AI agents equipped with Playwright automation tools.</p>
+<h3 id="business-justification">Business Justification</h3>
+<ul>
+<li><strong>AI Agent Training Acceleration</strong>: Dramatically reduce time to train workflow automation agents</li>
+<li><strong>Knowledge Capture</strong>: Preserve institutional knowledge from observed workflows</li>
+<li><strong>Scalable Documentation</strong>: Convert ad-hoc processes into reusable AI training data</li>
+<li><strong>Business Logic Preservation</strong>: Capture decision-making patterns that traditional automation misses</li>
+</ul>
+<h3 id="investment-required">Investment Required</h3>
+<ul>
+<li><strong>Timeline</strong>: 14-16 weeks development</li>
+<li><strong>Team</strong>: 2-3 developers + 1 AI/ML specialist</li>
+<li><strong>Technology</strong>: Google ADK, Gemini Flash 2.0 licensing</li>
+</ul>
+<hr>
+<h2 id="problem-statement--solution">Problem Statement &amp; Solution</h2>
+<h3 id="current-challenge">Current Challenge</h3>
+<p>Organizations struggle to train AI agents for browser-based workflows because:</p>
+<ul>
+<li>Manual coding of automation is time-intensive and brittle</li>
+<li>Business logic and decision criteria are rarely documented</li>
+<li>Screen recordings contain rich information but lack structured extraction</li>
+<li>Existing tools generate technical steps but miss the &quot;why&quot; behind decisions</li>
+</ul>
+<h3 id="our-solution">Our Solution</h3>
+<p>A specialized analysis tool that extracts both technical workflow steps AND business decision patterns from screen recordings, outputting three AI-agent-ready artifacts that enable intelligent workflow replication.</p>
+<hr>
+<h2 id="product-scope--deliverables">Product Scope &amp; Deliverables</h2>
+<h3 id="core-functionality">Core Functionality</h3>
+<p>Transform browser workflow recordings into AI agent training data through automated analysis and quality validation.</p>
+<h3 id="three-output-artifacts">Three Output Artifacts</h3>
+<h4 id="1-playwright-reference-script">1. Playwright Reference Script</h4>
+<ul>
+<li><strong>Purpose</strong>: Starting point for AI agents with Playwright automation tools</li>
+<li><strong>Format</strong>: Python script with extensive comments</li>
+<li><strong>Contents</strong>: Browser interactions, element selection patterns, workflow structure</li>
+<li><strong>Note</strong>: Provides automation foundation; elements may require AI agent adaptation</li>
+</ul>
+<h4 id="2-natural-language-workflow-guide">2. Natural Language Workflow Guide</h4>
+<ul>
+<li><strong>Purpose</strong>: Human-readable description with business context for AI interpretation</li>
+<li><strong>Format</strong>: Structured text with embedded metadata</li>
+<li><strong>Contents</strong>:
+<ul>
+<li>Step-by-step process descriptions with timestamps</li>
+<li>Business decision criteria and logic</li>
+<li>Intent classification for each action</li>
+<li>Context clues and conditional information</li>
+<li>Expected outcomes and validation points</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-standard-operating-procedure">3. Standard Operating Procedure</h4>
+<ul>
+<li><strong>Purpose</strong>: Compliance documentation using industry templates</li>
+<li><strong>Format</strong>: Markdown following established standards (ISO 9001, ITIL, COSO)</li>
+<li><strong>Contents</strong>:
+<ul>
+<li>Process overview and business objectives</li>
+<li>Detailed procedures with decision criteria</li>
+<li>Quality checkpoints and business rules</li>
+<li>Exception handling and escalation procedures</li>
+</ul>
+</li>
+</ul>
+<h3 id="target-consumer">Target Consumer</h3>
+<p><strong>Downstream Gemini AI agents</strong> equipped with generic Playwright tool wrappers (navigate, inspect elements, interact with UI, etc.) that need both technical guidance and business context understanding.</p>
+<hr>
+<h2 id="technical-requirements">Technical Requirements</h2>
+<h3 id="core-technology-stack">Core Technology Stack</h3>
+<ul>
+<li><strong>AI Model</strong>: Gemini Flash 2.0 (multimodal video analysis)</li>
+<li><strong>Platform</strong>: Google AI Development Kit (ADK)</li>
+<li><strong>Language</strong>: Python 3.10+</li>
+<li><strong>Input</strong>: MP4/WebM browser recordings (2-5 minutes)</li>
+<li><strong>Processing</strong>: Frame-by-frame analysis with business logic extraction</li>
+</ul>
+<h3 id="key-capabilities-required">Key Capabilities Required</h3>
+<h4 id="1-multimodal-video-analysis">1. Multimodal Video Analysis</h4>
+<ul>
+<li>Frame extraction and UI element identification</li>
+<li>User action recognition and sequencing</li>
+<li>Timestamp correlation and workflow mapping</li>
+</ul>
+<h4 id="2-business-logic-extraction">2. Business Logic Extraction</h4>
+<ul>
+<li><strong>Decision Pattern Recognition</strong>: Identify what drives user choices</li>
+<li><strong>Intent Classification</strong>: Understand why actions are taken</li>
+<li><strong>Context Analysis</strong>: Capture environmental factors influencing decisions</li>
+<li><strong>Rule Inference</strong>: Derive business rules from observed patterns</li>
+</ul>
+<h4 id="3-quality-assurance-system">3. Quality Assurance System</h4>
+<ul>
+<li><strong>Code Execution Validation</strong>: Use ADK interpreter to test Playwright scripts</li>
+<li><strong>Multi-Agent Critique</strong>: Specialized validation agents for each artifact type</li>
+<li><strong>Iterative Refinement</strong>: Automated improvement cycles with quality thresholds</li>
+</ul>
+<hr>
+<h2 id="quality-assurance--validation">Quality Assurance &amp; Validation</h2>
+<h3 id="built-in-quality-system">Built-in Quality System</h3>
+<p>The system includes automated quality assurance as a core feature, not optional validation:</p>
+<h4 id="code-execution-agent">Code Execution Agent</h4>
+<ul>
+<li><strong>Static Analysis</strong>: Validate Playwright script syntax and structure</li>
+<li><strong>Mock Execution</strong>: Test script logic using ADK interpreter tools</li>
+<li><strong>Error Detection</strong>: Identify and suggest fixes for common issues</li>
+<li><strong>Quality Scoring</strong>: Rate script viability and reliability</li>
+</ul>
+<h4 id="multi-agent-validation">Multi-Agent Validation</h4>
+<ul>
+<li><strong>Workflow Accuracy Critic</strong>: Verifies technical steps match video evidence</li>
+<li><strong>Business Logic Critic</strong>: Validates captured intent and decision patterns</li>
+<li><strong>Documentation Critic</strong>: Ensures compliance with selected templates</li>
+<li><strong>AI Agent Usability Critic</strong>: Evaluates artifacts from downstream agent perspective</li>
+</ul>
+<h4 id="iterative-improvement">Iterative Improvement</h4>
+<ul>
+<li><strong>Refinement Cycles</strong>: Automatic improvement loops (default 3 iterations)</li>
+<li><strong>Quality Thresholds</strong>: Configurable acceptance criteria (default 85% accuracy)</li>
+<li><strong>Convergence Tracking</strong>: Monitor improvement progression and success rates</li>
+</ul>
+<hr>
+<h2 id="success-metrics--acceptance-criteria">Success Metrics &amp; Acceptance Criteria</h2>
+<h3 id="technical-performance">Technical Performance</h3>
+<ul>
+<li><strong>Processing Time</strong>: &lt;10 minutes end-to-end for 5-minute recordings</li>
+<li><strong>Workflow Accuracy</strong>: &gt;90% correct step identification post-validation</li>
+<li><strong>Script Viability</strong>: &gt;85% of Playwright scripts execute without critical errors</li>
+</ul>
+<h3 id="business-value-metrics">Business Value Metrics</h3>
+<ul>
+<li><strong>Intent Capture</strong>: &gt;80% accurate business decision pattern extraction</li>
+<li><strong>AI Agent Success</strong>: &gt;85% of downstream agents successfully execute workflows using artifacts</li>
+<li><strong>Time Savings</strong>: Reduce workflow documentation time from hours to minutes</li>
+<li><strong>Knowledge Retention</strong>: Capture business logic that would otherwise be lost</li>
+</ul>
+<h3 id="quality-gates">Quality Gates</h3>
+<ul>
+<li>All three artifacts must pass automated validation before output</li>
+<li>Business logic extraction must achieve minimum confidence scores</li>
+<li>Generated procedures must comply with selected industry templates</li>
+<li>Code execution validation must confirm script structural integrity</li>
+</ul>
+<hr>
+<h2 id="implementation-roadmap">Implementation Roadmap</h2>
+<h3 id="phase-1-foundation-weeks-1-4">Phase 1: Foundation (Weeks 1-4)</h3>
+<p><strong>Deliverables</strong>: Core video analysis and Gemini Flash 2.0 integration</p>
+<ul>
+<li>Video processing pipeline development</li>
+<li>Basic workflow step extraction</li>
+<li>Initial artifact generation framework</li>
+</ul>
+<h3 id="phase-2-business-logic-engine-weeks-5-8">Phase 2: Business Logic Engine (Weeks 5-8)</h3>
+<p><strong>Deliverables</strong>: Business decision pattern recognition and intent extraction</p>
+<ul>
+<li>Decision pattern analysis algorithms</li>
+<li>Intent classification system</li>
+<li>Context extraction from screen elements</li>
+<li>Business rule inference capabilities</li>
+</ul>
+<h3 id="phase-3-quality-assurance-system-weeks-9-12">Phase 3: Quality Assurance System (Weeks 9-12)</h3>
+<p><strong>Deliverables</strong>: Code execution validation and multi-agent critique system</p>
+<ul>
+<li>ADK interpreter integration for script testing</li>
+<li>Specialized validation agents for each artifact type</li>
+<li>Iterative refinement system with quality thresholds</li>
+<li>Performance optimization and error handling</li>
+</ul>
+<h3 id="phase-4-integration--testing-weeks-13-16">Phase 4: Integration &amp; Testing (Weeks 13-16)</h3>
+<p><strong>Deliverables</strong>: Production-ready system with comprehensive testing</p>
+<ul>
+<li>End-to-end pipeline integration</li>
+<li>Validation with real downstream AI agents</li>
+<li>Performance tuning and documentation</li>
+<li>Deployment preparation and monitoring setup</li>
+</ul>
+<hr>
+<h2 id="risk-assessment--mitigation">Risk Assessment &amp; Mitigation</h2>
+<h3 id="technical-risks">Technical Risks</h3>
+<table>
+<thead>
+<tr>
+<th>Risk</th>
+<th>Impact</th>
+<th>Mitigation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Video quality variations affecting analysis</td>
+<td>Medium</td>
+<td>Preprocessing enhancement and quality thresholds</td>
+</tr>
+<tr>
+<td>Element recognition accuracy limitations</td>
+<td>High</td>
+<td>Multiple identification strategies and confidence scoring</td>
+</tr>
+<tr>
+<td>Business logic complexity exceeding extraction capabilities</td>
+<td>Medium</td>
+<td>Graduated complexity handling with human review fallback</td>
+</tr>
+</tbody>
+</table>
+<h3 id="business-risks">Business Risks</h3>
+<table>
+<thead>
+<tr>
+<th>Risk</th>
+<th>Impact</th>
+<th>Mitigation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Generated artifacts insufficient for AI agent training</td>
+<td>High</td>
+<td>Extensive testing with target downstream systems</td>
+</tr>
+<tr>
+<td>Development timeline extensions</td>
+<td>Medium</td>
+<td>Phased delivery with MVP validation points</td>
+</tr>
+<tr>
+<td>Integration complexity with existing systems</td>
+<td>Low</td>
+<td>Modular design with standard output formats</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="resource-requirements">Resource Requirements</h2>
+<h3 id="team-structure">Team Structure</h3>
+<ul>
+<li><strong>Lead Developer</strong>: Python/AI integration specialist</li>
+<li><strong>ML Engineer</strong>: Gemini Flash 2.0 and ADK expertise</li>
+<li><strong>QA Engineer</strong>: Multi-agent validation system development</li>
+<li><strong>Part-time</strong>: Business analyst for workflow pattern validation</li>
+</ul>
+<h3 id="technology-resources">Technology Resources</h3>
+<ul>
+<li>Google ADK licensing and API quotas</li>
+<li>Development environment with video processing capabilities</li>
+<li>Testing infrastructure for AI agent validation</li>
+<li>Documentation and deployment platforms</li>
+</ul>
+<h3 id="timeline-dependencies">Timeline Dependencies</h3>
+<ul>
+<li>Google ADK access and team training (Week 1)</li>
+<li>Gemini Flash 2.0 model access and configuration (Week 2)</li>
+<li>Sample workflow recordings for development testing (Week 3)</li>
+<li>Downstream AI agent system access for integration testing (Week 10)</li>
+</ul>
+<hr>
+<h2 id="future-considerations">Future Considerations</h2>
+<h3 id="immediate-extensions-post-mvp">Immediate Extensions (Post-MVP)</h3>
+<ul>
+<li>Multi-tab workflow support for complex business processes</li>
+<li>Domain-specific business logic templates (finance, healthcare, etc.)</li>
+<li>Real-time workflow capture without pre-recorded files</li>
+<li>Integration with existing documentation systems</li>
+</ul>
+<h3 id="strategic-opportunities">Strategic Opportunities</h3>
+<ul>
+<li>Enterprise workflow pattern library development</li>
+<li>AI agent marketplace with pre-trained workflow capabilities</li>
+<li>Regulatory compliance automation for documented procedures</li>
+<li>Cross-platform workflow analysis (desktop applications, mobile apps)</li>
+</ul>
+<hr>
+<h2 id="approval--next-steps">Approval &amp; Next Steps</h2>
+<h3 id="decision-points">Decision Points</h3>
+<ol>
+<li><strong>Technology Investment</strong>: Approve Google ADK licensing and development resources</li>
+<li><strong>Team Allocation</strong>: Assign dedicated team members for 16-week development cycle</li>
+<li><strong>Success Criteria</strong>: Confirm acceptance metrics and validation approaches</li>
+<li><strong>Integration Planning</strong>: Define downstream AI agent testing and validation process</li>
+</ol>
+<h3 id="immediate-actions-required">Immediate Actions Required</h3>
+<ul>
+<li><input type="checkbox" id="checkbox0"><label for="checkbox0">Secure Google ADK access and development environment</label></li>
+<li><input type="checkbox" id="checkbox1"><label for="checkbox1">Identify and prepare sample workflow recordings for development</label></li>
+<li><input type="checkbox" id="checkbox2"><label for="checkbox2">Define business logic extraction success criteria with domain experts</label></li>
+<li><input type="checkbox" id="checkbox3"><label for="checkbox3">Establish downstream AI agent testing protocols</label></li>
+</ul>
+<hr>
+<h2 id="appendices">Appendices</h2>
+<h3 id="a-technical-references">A. Technical References</h3>
+<ul>
+<li><a href="https://ai.google.dev/gemini-api/docs/models#gemini-2.0-flash">Gemini Flash 2.0 Documentation</a></li>
+<li><a href="https://google.github.io/adk-docs/agents/multi-agents/">ADK Multi-Agent Systems</a></li>
+<li><a href="https://google.github.io/adk-docs/tools/built-in-tools/#code-execution">ADK Code Execution Tools</a></li>
+</ul>
+<h3 id="b-industry-templates">B. Industry Templates</h3>
+<ul>
+<li>ISO 9001 Procedure Documentation Standards</li>
+<li>ITIL Service Management Process Templates</li>
+<li>COSO Internal Control Documentation Framework</li>
+</ul>
+<h3 id="c-sample-use-cases">C. Sample Use Cases</h3>
+<ul>
+<li>Financial transaction approval workflows</li>
+<li>Customer service ticket categorization</li>
+<li>Quality assurance inspection procedures</li>
+<li>Data entry and validation processes</li>
+</ul>
+
+</body>
+</html>

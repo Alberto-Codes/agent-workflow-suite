@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>README.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="agent-workflow-suite">Agent Workflow Suite</h1>
+<p><a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.12-blue.svg" alt="Python 3.12"></a>
+<a href="#"><img src="https://img.shields.io/badge/License-TBD-lightgrey.svg" alt="License: TBD"></a>
+<a href="https://github.com/astral-sh/ruff"><img src="https://img.shields.io/badge/code style-ruff-000000.svg" alt="Code style: Ruff"></a>
+<a href="https://ai.google.dev/gemini-api/docs/models#gemini-2.0-flash"><img src="https://img.shields.io/badge/AI-Gemini Flash 2.0-blue.svg" alt="Gemini Flash 2.0"></a></p>
+<blockquote>
+<p><strong>Enterprise AI-Powered Browser Workflow Automation Suite</strong><br>
+Transform screen recordings into intelligent workflow automation with built-in quality assurance and comprehensive audit trails.</p>
+</blockquote>
+<h2 id="%F0%9F%8E%AF-what-this-does">🎯 What This Does</h2>
+<p>The Agent Workflow Suite captures institutional knowledge from browser workflows and operationalizes it through intelligent AI agents. It solves the critical gap between manual process documentation and reliable automation by preserving both <strong>technical steps</strong> and <strong>business decision logic</strong>.</p>
+<p><strong>The Problem</strong>: Organizations lose valuable workflow knowledge when employees leave, and traditional automation tools miss the &quot;why&quot; behind decisions.</p>
+<p><strong>Our Solution</strong>: AI agents that understand both what to do and why to do it, with built-in quality assurance and complete audit trails.</p>
+<h2 id="%F0%9F%8F%97%EF%B8%8F-system-overview">🏗️ System Overview</h2>
+<pre><code class="language-mermaid"><div class="mermaid">graph LR
+    VIDEO[Screen Recording<br/>2-5 minutes] --> ANALYZER[Screen Recording<br/>Workflow Analyzer]
+    ANALYZER --> ARTIFACTS[AI Training<br/>Artifacts]
+    ARTIFACTS --> EXECUTOR[AI Workflow<br/>Execution Agent]
+    CSV[Work Queue] --> EXECUTOR
+    EXECUTOR --> RESULTS[Validated Results<br/>+ Audit Trail]
+</div></code></pre>
+<h3 id="two-component-architecture">Two-Component Architecture</h3>
+<ol>
+<li><strong><a href="docs/prds/01-screen-recording-analyzer/">Screen Recording Workflow Analyzer</a></strong> - Transforms browser recordings into structured AI training data</li>
+<li><strong><a href="docs/prds/02-workflow-execution-agent/">AI Workflow Execution Agent</a></strong> - Executes workflows intelligently with built-in QA validation</li>
+</ol>
+<h2 id="%E2%9C%A8-key-features">✨ Key Features</h2>
+<h3 id="%F0%9F%A7%A0-business-logic-capture">🧠 <strong>Business Logic Capture</strong></h3>
+<ul>
+<li>Extracts decision patterns and intent, not just clicks</li>
+<li>Preserves organizational knowledge and procedures</li>
+<li>Generates compliance-ready documentation</li>
+</ul>
+<h3 id="%F0%9F%94%8D-multi-agent-quality-assurance">🔍 <strong>Multi-Agent Quality Assurance</strong></h3>
+<ul>
+<li>Generator agents create artifacts, critic agents validate them</li>
+<li>Iterative refinement with quality thresholds (&gt;85% accuracy)</li>
+<li>Code execution validation using Google ADK</li>
+</ul>
+<h3 id="%F0%9F%A4%96-intelligent-execution">🤖 <strong>Intelligent Execution</strong></h3>
+<ul>
+<li>ADK callback-driven validation at action, step, and workflow levels</li>
+<li>Adaptive error recovery with business rule consultation</li>
+<li>Real-time QA agent monitoring and correction</li>
+</ul>
+<h3 id="%F0%9F%93%8B-complete-audit-trails">📋 <strong>Complete Audit Trails</strong></h3>
+<ul>
+<li>Screenshot documentation at every step</li>
+<li>Business rule compliance verification</li>
+<li>Regulatory-ready audit packages</li>
+</ul>
+<h2 id="%F0%9F%9A%80-technology-stack">🚀 Technology Stack</h2>
+<ul>
+<li><strong>AI Platform</strong>: Google ADK + Gemini Flash 2.0</li>
+<li><strong>Automation</strong>: Playwright Python with adaptive selectors</li>
+<li><strong>Language</strong>: Python 3.12+ with async/await patterns</li>
+<li><strong>Quality</strong>: Multi-agent validation with callback system</li>
+<li><strong>Compliance</strong>: Automated audit trail generation</li>
+</ul>
+<h2 id="%F0%9F%93%8B-requirements">📋 Requirements</h2>
+<h3 id="system-requirements">System Requirements</h3>
+<ul>
+<li>Python 3.12+</li>
+<li>Google ADK access and Gemini Flash 2.0 API</li>
+<li>8GB RAM minimum (16GB recommended)</li>
+<li>Modern browser (Chromium-based preferred)</li>
+</ul>
+<h3 id="input-specifications">Input Specifications</h3>
+<ul>
+<li><strong>Video</strong>: MP4/WebM, 2-5 minutes, 1280x720+ resolution</li>
+<li><strong>Content</strong>: Browser-based workflows only</li>
+<li><strong>Quality</strong>: Clear UI interactions with minimal interruptions</li>
+</ul>
+<h2 id="%F0%9F%8E%AF-success-metrics">🎯 Success Metrics</h2>
+<ul>
+<li><strong>Processing</strong>: &lt;10 minutes for 5-minute recordings</li>
+<li><strong>Accuracy</strong>: &gt;90% workflow step identification</li>
+<li><strong>Execution</strong>: &gt;85% script success rate</li>
+<li><strong>Business Value</strong>: &gt;75% reduction in manual workflow time</li>
+</ul>
+<h2 id="%F0%9F%93%81-project-structure">📁 Project Structure</h2>
+<pre class="hljs"><code><div>agent-workflow-suite/
+├── docs/prds/                    # Detailed product requirements
+│   ├── 01-screen-recording-analyzer/
+│   └── 02-workflow-execution-agent/
+├── src/agent_workflow_suite/     # Source code (coming soon)
+├── pyproject.toml               # Project configuration
+└── README.md                   # This file
+</div></code></pre>
+<h2 id="%F0%9F%93%96-documentation">📖 Documentation</h2>
+<ul>
+<li><strong><a href="docs/prds/01-screen-recording-analyzer/prd-screen-recording-workflow-analyzer.md">Screen Recording Analyzer PRD</a></strong> - Complete requirements and architecture</li>
+<li><strong><a href="docs/prds/02-workflow-execution-agent/prd-ai-workflow-execution-agent.md">Workflow Execution Agent PRD</a></strong> - Execution system specifications</li>
+<li><strong><a href="docs/prds/01-screen-recording-analyzer/assets/architecture-overview.md">Architecture Overview</a></strong> - System design and components</li>
+<li><strong><a href="docs/prds/01-screen-recording-analyzer/assets/implementation-phases.md">Implementation Phases</a></strong> - Development timeline and milestones</li>
+</ul>
+<h2 id="%F0%9F%97%93%EF%B8%8F-development-status">🗓️ Development Status</h2>
+<p><strong>Current Phase</strong>: Initial setup and documentation<br>
+<strong>Timeline</strong>: 28-week development cycle<br>
+<strong>Next Milestone</strong>: Foundation infrastructure (Weeks 1-4)</p>
+<p>See <a href="docs/prds/01-screen-recording-analyzer/assets/implementation-phases.md">Implementation Phases</a> for detailed roadmap.</p>
+<h2 id="%F0%9F%A4%9D-contributing">🤝 Contributing</h2>
+<p>This project follows strict development standards:</p>
+<ul>
+<li><strong>Commits</strong>: <a href="https://conventionalcommits.org/">Conventional Commits</a> specification</li>
+<li><strong>Code Quality</strong>: Ruff formatting and linting with pre-commit hooks</li>
+<li><strong>Git Workflow</strong>: Feature branches → develop → main with required reviews</li>
+<li><strong>Testing</strong>: Comprehensive coverage with quality gates</li>
+</ul>
+<p>See our git rules: <code>fetch_rules git-conventions</code> in your development environment.</p>
+<h2 id="%F0%9F%93%84-license">📄 License</h2>
+<p>License to be determined - contact legal team for details.</p>
+<h2 id="%F0%9F%86%98-support">🆘 Support</h2>
+<ul>
+<li><strong>Issues</strong>: <a href="../../issues">GitHub Issues</a> for bugs and feature requests</li>
+<li><strong>Documentation</strong>: See <a href="docs/">docs/</a> for detailed specifications</li>
+<li><strong>Questions</strong>: <a href="../../discussions">GitHub Discussions</a> for community support</li>
+</ul>
+<hr>
+<p><strong>🚀 Transforming workflow automation through AI-powered institutional knowledge capture</strong></p>
+
+</body>
+</html>
