@@ -112,14 +112,14 @@ graph LR
     P5D --> P6A
     P6D --> P7A
 
-    %% Styling
-    classDef phase1 fill:#e3f2fd
-    classDef phase2 fill:#f1f8e9
-    classDef phase3 fill:#fff3e0
-    classDef phase4 fill:#fce4ec
-    classDef phase5 fill:#e8eaf6
-    classDef phase6 fill:#e0f2f1
-    classDef phase7 fill:#fff8e1
+    %% Styling for better dark/light theme compatibility
+    classDef phase1 fill:#2196F3,stroke:#1976D2,stroke-width:2px,color:#ffffff
+    classDef phase2 fill:#4CAF50,stroke:#388E3C,stroke-width:2px,color:#ffffff
+    classDef phase3 fill:#FF9800,stroke:#F57C00,stroke-width:2px,color:#ffffff
+    classDef phase4 fill:#E91E63,stroke:#C2185B,stroke-width:2px,color:#ffffff
+    classDef phase5 fill:#673AB7,stroke:#512DA8,stroke-width:2px,color:#ffffff
+    classDef phase6 fill:#009688,stroke:#00695C,stroke-width:2px,color:#ffffff
+    classDef phase7 fill:#FFC107,stroke:#FFA000,stroke-width:2px,color:#000000
 
     class P1A,P1B,P1C,P1D phase1
     class P2A,P2B,P2C,P2D phase2

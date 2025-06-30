@@ -63,13 +63,13 @@ flowchart TD
     ERROR --> END([Process End])
     FINAL --> SUCCESS([Success])
 
-    %% Styling
-    classDef input fill:#e3f2fd
-    classDef process fill:#f1f8e9
-    classDef decision fill:#fff3e0
-    classDef output fill:#e8f5e8
-    classDef error fill:#ffebee
-    classDef success fill:#e0f2f1
+    %% Styling for better dark/light theme compatibility
+    classDef input fill:#2196F3,stroke:#1976D2,stroke-width:2px,color:#ffffff
+    classDef process fill:#4CAF50,stroke:#388E3C,stroke-width:2px,color:#ffffff
+    classDef decision fill:#FF9800,stroke:#F57C00,stroke-width:2px,color:#ffffff
+    classDef output fill:#009688,stroke:#00695C,stroke-width:2px,color:#ffffff
+    classDef error fill:#F44336,stroke:#D32F2F,stroke-width:2px,color:#ffffff
+    classDef success fill:#8BC34A,stroke:#689F38,stroke-width:2px,color:#ffffff
 
     class START,EXTRACT input
     class ANALYZE,STRUCT,ACTIONS,INTENT,CONTEXT,GEN1,GEN2,GEN3,REFINE1,REFINE2,REFINE3,CODE_EXEC,AUTO_FIX,ITERATION,FINAL process

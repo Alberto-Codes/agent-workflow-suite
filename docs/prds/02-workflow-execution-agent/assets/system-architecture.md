@@ -132,16 +132,16 @@ graph TB
     LOGGER --> LOGS
     QAA --> METRICS
 
-    %% Styling
-    classDef input fill:#e3f2fd
-    classDef artifacts fill:#f1f8e9
-    classDef execution fill:#fff3e0
-    classDef tools fill:#fce4ec
-    classDef browser fill:#e8eaf6
-    classDef callbacks fill:#e0f2f1
-    classDef qa fill:#fff8e1
-    classDef audit fill:#f3e5f5
-    classDef output fill:#e8f5e8
+    %% Styling for better dark/light theme compatibility
+    classDef input fill:#2196F3,stroke:#1976D2,stroke-width:2px,color:#ffffff
+    classDef artifacts fill:#4CAF50,stroke:#388E3C,stroke-width:2px,color:#ffffff
+    classDef execution fill:#FF9800,stroke:#F57C00,stroke-width:2px,color:#ffffff
+    classDef tools fill:#E91E63,stroke:#C2185B,stroke-width:2px,color:#ffffff
+    classDef browser fill:#673AB7,stroke:#512DA8,stroke-width:2px,color:#ffffff
+    classDef callbacks fill:#009688,stroke:#00695C,stroke-width:2px,color:#ffffff
+    classDef qa fill:#FFC107,stroke:#FFA000,stroke-width:2px,color:#000000
+    classDef audit fill:#9C27B0,stroke:#7B1FA2,stroke-width:2px,color:#ffffff
+    classDef output fill:#8BC34A,stroke:#689F38,stroke-width:2px,color:#ffffff
 
     class WA,CSV,CONFIG input
     class NLG,PSC,SOP artifacts

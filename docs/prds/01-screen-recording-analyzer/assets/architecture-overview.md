@@ -76,13 +76,13 @@ graph TB
     SCA -.->|Feedback| SGA
     CEA -.->|Code Fixes| PGA
 
-    %% Styling
-    classDef input fill:#e1f5fe
-    classDef processing fill:#f3e5f5
-    classDef generator fill:#e8f5e8
-    classDef critic fill:#fff3e0
-    classDef validation fill:#fce4ec
-    classDef output fill:#e0f2f1
+    %% Styling for better dark/light theme compatibility
+    classDef input fill:#2196F3,stroke:#1976D2,stroke-width:2px,color:#ffffff
+    classDef processing fill:#9C27B0,stroke:#7B1FA2,stroke-width:2px,color:#ffffff
+    classDef generator fill:#4CAF50,stroke:#388E3C,stroke-width:2px,color:#ffffff
+    classDef critic fill:#FF9800,stroke:#F57C00,stroke-width:2px,color:#ffffff
+    classDef validation fill:#E91E63,stroke:#C2185B,stroke-width:2px,color:#ffffff
+    classDef output fill:#009688,stroke:#00695C,stroke-width:2px,color:#ffffff
 
     class VI,CONFIG input
     class VP,GA,BLE processing

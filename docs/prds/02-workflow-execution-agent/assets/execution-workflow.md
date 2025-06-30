@@ -114,16 +114,16 @@ flowchart TD
     QUEUE_ERROR --> END
     BROWSER_ERROR --> WORK_LOOP
 
-    %% Styling
-    classDef start fill:#e0f2f1
-    classDef process fill:#f1f8e9
-    classDef decision fill:#fff3e0
-    classDef callback fill:#e8eaf6
-    classDef error fill:#ffebee
-    classDef success fill:#e8f5e8
-    classDef end fill:#fce4ec
+    %% Styling for better dark/light theme compatibility
+    classDef start fill:#009688,stroke:#00695C,stroke-width:2px,color:#ffffff
+    classDef process fill:#4CAF50,stroke:#388E3C,stroke-width:2px,color:#ffffff
+    classDef decision fill:#FF9800,stroke:#F57C00,stroke-width:2px,color:#ffffff
+    classDef callback fill:#673AB7,stroke:#512DA8,stroke-width:2px,color:#ffffff
+    classDef error fill:#F44336,stroke:#D32F2F,stroke-width:2px,color:#ffffff
+    classDef success fill:#8BC34A,stroke:#689F38,stroke-width:2px,color:#ffffff
+    classDef endpoint fill:#E91E63,stroke:#C2185B,stroke-width:2px,color:#ffffff
 
-    class START,END start
+    class START,END endpoint
     class LOAD_CONFIG,LOAD_QUEUE,GET_ITEM,INIT_BROWSER,INTERPRET_ARTIFACTS,PLAN_EXECUTION,START_WORKFLOW,INTERPRET_STEP,EXECUTE_ACTION,SCREENSHOT_PRE,SCREENSHOT_POST,COLLECT_EVIDENCE,COLLECT_FAILURE,GENERATE_REPORT,GENERATE_FAILURE,CLEANUP_BROWSER,FINAL_REPORT,ARCHIVE_RESULTS process
     class VALIDATE_INPUTS,QUEUE_VALIDATE,ITEM_VALIDATE,BROWSER_READY,ACTION_RESULT,ERROR_TYPE,RETRY_LIMIT,QA_ACTION_RESULT,QA_STEP_RESULT,FINAL_VALIDATION,WORK_LOOP,STEP_ITERATOR,ACTION_ITERATOR decision
     class WF_CALLBACK_START,WF_CALLBACK_END,STEP_CALLBACK_START,STEP_CALLBACK_END,ACTION_CALLBACK_PRE,ACTION_CALLBACK_POST callback

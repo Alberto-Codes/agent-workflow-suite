@@ -60,13 +60,13 @@ flowchart TD
     FAILURE_ACTIONS --> COMPLETE
     MANUAL_REVIEW --> COMPLETE
 
-    %% Styling
-    classDef level1 fill:#ffebee
-    classDef level2 fill:#e8eaf6
-    classDef level3 fill:#e0f2f1
-    classDef decision fill:#fff3e0
-    classDef action fill:#f1f8e9
-    classDef endpoint fill:#fce4ec
+    %% Styling for better dark/light theme compatibility
+    classDef level1 fill:#F44336,stroke:#D32F2F,stroke-width:2px,color:#ffffff
+    classDef level2 fill:#673AB7,stroke:#512DA8,stroke-width:2px,color:#ffffff
+    classDef level3 fill:#009688,stroke:#00695C,stroke-width:2px,color:#ffffff
+    classDef decision fill:#FF9800,stroke:#F57C00,stroke-width:2px,color:#ffffff
+    classDef action fill:#4CAF50,stroke:#388E3C,stroke-width:2px,color:#ffffff
+    classDef endpoint fill:#E91E63,stroke:#C2185B,stroke-width:2px,color:#ffffff
 
     class L1_PRE,L1_POST,PRE_ACTIONS,POST_ACTIONS level1
     class L2_STEP,L2_END,STEP_SETUP,STEP_VALIDATE,STEP_COMPLETE level2
