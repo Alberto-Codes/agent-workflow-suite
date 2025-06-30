@@ -1,7 +1,7 @@
 # Agent Workflow Suite
 
 [![Python 3.12](https://img.shields.io/badge/python-3.12-blue.svg)](https://www.python.org/downloads/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: TBD](https://img.shields.io/badge/License-TBD-lightgrey.svg)](#)
 [![Code style: Ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
 [![Gemini Flash 2.0](https://img.shields.io/badge/AI-Gemini%20Flash%202.0-blue.svg)](https://ai.google.dev/gemini-api/docs/models#gemini-2.0-flash)
 
@@ -122,7 +122,7 @@ See our git rules: `fetch_rules git-conventions` in your development environment
 
 ## 📄 License
 
-MIT License - see [LICENSE](LICENSE) for details.
+License to be determined - contact legal team for details.
 
 ## 🆘 Support
 

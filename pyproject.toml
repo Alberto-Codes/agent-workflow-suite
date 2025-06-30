@@ -1,13 +1,14 @@
 [project]
 name = "agent-workflow-suite"
 version = "0.1.0"
-description = "Add your description here"
+description = "Enterprise AI-Powered Browser Workflow Automation Suite"
 readme = "README.md"
 authors = [
     { name = "Alberto-Codes", email = "94092485+Alberto-Codes@users.noreply.github.com" }
 ]
 requires-python = ">=3.12"
 dependencies = []
+license = {text = "License TBD"}
 
 [project.scripts]
 agent-workflow-suite = "agent_workflow_suite:main"
